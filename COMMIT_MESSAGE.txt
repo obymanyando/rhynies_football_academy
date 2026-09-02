@@ -1,0 +1,14 @@
+Rebrand to mustard and black, add new crest and contact details
+
+- Replace the maroon/gold palette with the club's mustard and black
+  across all eleven pages
+- Swap in the new crest (assets/crest-2026.jpeg), displayed with
+  object-fit: contain so the shield is not cropped
+- Core values now read Respect, Discipline, Determination, Teamwork,
+  Success — in the values grid and the footer strip
+- Add real contact details: +264 81 603 5328 and
+  rhyniesstars.fa@gmail.com, as tel:/mailto: links on the Contact
+  page and in the footer
+- Age intake reads Under-7 to Under-15, noting Under-14 and Under-15
+  boys join next year
+- Rebuild index.html from src/
