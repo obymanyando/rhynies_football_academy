@@ -1,0 +1,12 @@
+name = "rhynies-fa"
+compatibility_date = "2026-06-01"
+
+# workers.dev URL is the interim public host. The club has no domain yet;
+# rhynies-fa.netlify.app stays live until this deploy is verified.
+workers_dev = true
+
+[assets]
+directory = "./dist"
+
+# Client-side routing: serve index.html for all unmatched paths
+not_found_handling = "single-page-application"

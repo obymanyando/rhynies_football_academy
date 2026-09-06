@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Rhynies Stars FA design tokens.
+ * Values are the club's brand, taken from the design handoff. Stored as HSL
+ * triples so Tailwind can compose them with opacity modifiers.
+ */
+:root {
+  --ink: 36 19% 5%;             /* #100E0B utility bar, drawer, footer, text on mustard */
+  --ink-header: 38 15% 10%;     /* #1E1B16 header bar, dark grounds, default link */
+  --ink-body: 30 11% 7%;        /* #141210 body text on cream */
+  --link-hover: 38 15% 21%;     /* #3D372D link hover on light grounds */
+  --mustard: 40 87% 52%;        /* #EFA91B primary accent, buttons, focus ring */
+  --mustard-bright: 43 100% 62%;/* #FFC93B hover fill, active underline */
+  --mustard-deep: 38 76% 46%;   /* #D08F1C pressed state */
+  --cream: 44 58% 96%;          /* #FBF8F0 page ground */
+  --cream-tint: 44 73% 88%;     /* #F7EBCB value pills, soft cards */
+  --sand: 43 42% 83%;           /* #E6DCC2 body text on dark grounds */
+  --sand-warm: 34 66% 86%;      /* #F3DFC4 nav links at rest on dark */
+
+  /* Header geometry is a shared constant: the fixtures filter bar sticks below
+     the header and derives its offset from it. The handoff records that
+     hardcoding the two independently broke twice.
+     Note the header is TALLER than its nav row — the 2px mustard brand rule
+     sits under it and is part of the sticky element. Anything sticking below
+     the header must use --header-total-h, or it rides up over the rule. */
+  --header-h: 84px;        /* nav row only */
+  --header-rule-h: 2px;    /* mustard brand rule beneath it */
+  --header-total-h: calc(var(--header-h) + var(--header-rule-h));
+}
+
+@layer base {
+  * {
+    @apply border-sand;
+  }
+
+  body {
+    @apply bg-cream font-body text-ink-body antialiased;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  /* Never leave the browser default focus ring. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--mustard));
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: hsl(var(--mustard-bright));
+    color: hsl(var(--ink));
+  }
+
+  h1, h2, h3 {
+    @apply font-display uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+  }
+}
+
+@layer components {
+  /* The label voice: condensed, uppercase, widely tracked. */
+  .label-voice {
+    @apply font-condensed uppercase;
+    letter-spacing: 0.11em;
+  }
+
+  .content-column {
+    @apply mx-auto w-full max-w-content px-gutter;
+  }
+}
+
+/* Motion is minimal and functional. Honour the user's preference. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
