@@ -1,26 +1,48 @@
 # Rhynies Stars Football Academy
 
-Website for Rhynies Stars Football Academy — Windhoek West, Namibia. Affiliated with Van Rhyn Primary School.
+Public website for Rhynies Stars Football Academy — a community-based youth
+football academy in Windhoek West, Namibia, affiliated with Van Rhyn Primary
+School.
 
-## What's here
+The site's jobs, in order: get a parent to register a child, get a sponsor to
+make contact, and let the academy community follow fixtures, results and news.
+The audience is mostly parents on mobile phones on Namibian mobile data, so page
+weight matters more than richness.
 
-- `index.html` — the built site. One self-contained file: all styles, scripts and photos inlined. This is what Netlify serves.
-- `src/` — the design source.
-  - `Rhynies Stars FA.dc.html` — the site itself. Edit this.
-  - `support.js` — runtime the source file needs.
-  - `assets/` — original photos and the crest.
-  - `content.txt` — copy and club facts the site was written from.
+## Stack
 
-`index.html` is generated from `src/`. Edit the source, rebuild, commit both.
+React 18 + TypeScript + Vite, Tailwind CSS 3, React Router v6, deployed to
+Cloudflare Workers.
 
-## Local preview
+```bash
+npm install
+npm run dev      # http://localhost:8080
+npm test
+npm run build
+```
 
-`src/Rhynies Stars FA.dc.html` needs `support.js` and `assets/` beside it — open it from inside `src/`, not on its own. Or just open `index.html`, which works anywhere with no internet connection.
+## Docs
 
-## Deploy
+| | |
+|---|---|
+| [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) | Layout, the nav breakpoint, how to verify responsively |
+| [docs/DESIGN_TOKENS.md](docs/DESIGN_TOKENS.md) | Colour, type, and the header geometry warning |
+| [docs/CONTENT.md](docs/CONTENT.md) | Editing content, and what the Academy still owes |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Cloudflare deploy, and the Netlify changeover |
+| [design/README.md](design/README.md) | Where the design handoff lives, and where this build departs from it |
 
-Netlify serves `index.html` from the repository root. Connect the repo in Netlify once and every push to `main` redeploys.
+## Two things that are easy to get wrong
 
-## Still to add
+**The club is "Rhynies", one n.** Older content notes spell it "Rhynnies".
+They are wrong — the crest, the email address and the Instagram handle all agree.
 
-Real fixtures and results, coach names and bios, phone/email contact details, match reports, and further photography. The layouts for all of these are built and waiting.
+**There are five core values**, in this order: Respect, Discipline,
+Determination, Teamwork, Success. An older six-value list is superseded.
+
+## Status
+
+The eleven pages are built. Club identity, programmes, age groups, competitions
+and contact details are final. Fixtures, results, coach names and news are
+visibly-labelled placeholders awaiting real data from the Academy — see
+[docs/CONTENT.md](docs/CONTENT.md). There is deliberately no contact form; see
+[design/README.md](design/README.md).
