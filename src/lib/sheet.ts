@@ -65,10 +65,19 @@ function table(csv: string, wanted: string[]) {
   const index = new Map(names.map((h, i) => [h, i]));
   // The Sheets phone app has no date picker, so the template gives the club
   // three dropdowns (Day, Month, Year) instead of one Date cell. Either works.
-  const splitDate = !index.has("date") && DATE_PARTS.every((p) => index.has(p.toLowerCase()));
+  const hasParts = DATE_PARTS.every((p) => index.has(p.toLowerCase()));
+  // Both forms at once: an extra column headed "Date" would silently win and
+  // hide every row. Refuse, so the page says "couldn't load" instead.
+  if (wanted.includes("Date") && hasParts && index.has("date")) {
+    throw new Error("Sheet has both a Date column and Day/Month/Year columns");
+  }
+  const splitDate = hasParts && !index.has("date");
   const required = splitDate ? wanted.flatMap((r) => (r === "Date" ? DATE_PARTS : [r])) : wanted;
   const missing = required.filter((r) => !index.has(r.toLowerCase()));
-  if (missing.length) throw new Error(`Sheet is missing column(s): ${missing.join(", ")}`);
+  if (missing.length) {
+    const named = missing.map((m) => (m === "Date" ? "Day, Month and Year (or Date)" : m));
+    throw new Error(`Sheet is missing column(s): ${named.join(", ")}`);
+  }
   // A second "Date" column would silently replace the first. Refuse instead.
   const doubled = required.filter((r) => names.filter((n) => n === r.toLowerCase()).length > 1);
   if (doubled.length) throw new Error(`Sheet has duplicate column(s): ${doubled.join(", ")}`);
@@ -108,7 +117,8 @@ function isoFromParts(day: string, month: string, year: string): string {
 }
 
 /**
- * ISO only (2026-09-12), which the template's Date columns are formatted to.
+ * ISO only (2026-09-12). The template's Day/Month/Year dropdowns are turned into
+ * this form; a sheet with a single Date column must use it as-is.
  * A slashed date is skipped, not guessed: if a cell loses that format, Google
  * exports it in the sheet's locale, and 10/11/2026 could be 10 Nov or 11 Oct.
  * A wrong kick-off date is the failure this site most needs to avoid.

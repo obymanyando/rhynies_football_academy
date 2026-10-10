@@ -226,6 +226,26 @@ describe("Day / Month / Year dropdown columns", () => {
     expect(skipped).toBe(1);
   });
 
+  it.each([
+    ["day 0", "0,Sep,2026"],
+    ["a zero-padded three-digit day", "007,Sep,2026"],
+    ["a decimal year", "5,Sep,2026.0"],
+    ["month 13", "5,13,2026"],
+    ["month 0", "5,0,2026"],
+    ["'Sept', which the dropdown never produces", "5,Sept,2026"],
+  ])("skips %s", (_why, parts) => {
+    const { skipped } = parseNews(`${DMY_NEWS}\n${parts},Academy,T,S`);
+    expect(skipped).toBe(1);
+  });
+
+  it("refuses a sheet with both a Date column and Day/Month/Year, rather than reading the wrong one", () => {
+    expect(() => parseNews(`Date,${DMY_NEWS}\n,5,Sep,2026,Academy,T,S`)).toThrow(/both a Date column/);
+  });
+
+  it("refuses a duplicated Day column", () => {
+    expect(() => parseNews(`${DMY_NEWS},Day\n5,Sep,2026,Academy,T,S,6`)).toThrow(/duplicate column\(s\): Day/);
+  });
+
   it("still needs a date: no Date column and only part of Day/Month/Year throws", () => {
     expect(() => parseFixtures("Day,Month,Age group,Competition,Opponent,Home/Away\n17,Oct,U13,MTC HopSol,X,Home")).toThrow(
       /Date/,
