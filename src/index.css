@@ -15,6 +15,7 @@
   --mustard: 40 87% 52%;        /* #EFA91B primary accent, buttons, focus ring */
   --mustard-bright: 43 100% 62%;/* #FFC93B hover fill, active underline */
   --mustard-deep: 38 76% 46%;   /* #D08F1C pressed state */
+  --mustard-ink: 45 84% 27%;    /* #7F620B small mustard text on cream, white, cream-tint (AA) */
   --cream: 44 58% 96%;          /* #FBF8F0 page ground */
   --cream-tint: 44 73% 88%;     /* #F7EBCB value pills, soft cards */
   --sand: 43 42% 83%;           /* #E6DCC2 body text on dark grounds */

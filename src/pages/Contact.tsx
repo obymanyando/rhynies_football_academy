@@ -45,7 +45,7 @@ export default function Contact() {
             <dl className="mt-6 space-y-6">
               {channels.map((c) => (
                 <div key={c.label}>
-                  <dt className="label-voice text-[13px] font-bold text-mustard-deep">{c.label}</dt>
+                  <dt className="label-voice text-[13px] font-bold text-mustard-ink">{c.label}</dt>
                   <dd className="mt-1">
                     <a
                       href={c.href}
@@ -73,7 +73,7 @@ export default function Contact() {
 
           <div className="rounded-md border border-sand bg-white p-8">
             <h2 className="font-display text-[24px] uppercase">Where to find us</h2>
-            <p className="label-voice mt-6 text-[13px] font-bold text-mustard-deep">Base</p>
+            <p className="label-voice mt-6 text-[13px] font-bold text-mustard-ink">Base</p>
             <address className="mt-1 space-y-1 not-italic text-[17px] leading-relaxed">
               <div className="font-semibold">{club.address.venue}</div>
               <div>{club.address.street}</div>

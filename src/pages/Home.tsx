@@ -75,7 +75,7 @@ export default function Home() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-[minmax(330px,1fr)_1.2fr] lg:items-start">
           <div>
-            <p className="label-voice text-[14px] font-bold text-mustard-deep">Who we are</p>
+            <p className="label-voice text-[14px] font-bold text-mustard-ink">Who we are</p>
             <h2 className="mt-3 text-section">
               Football is the reason they come. It is not the only reason they stay.
             </h2>
@@ -133,7 +133,7 @@ export default function Home() {
       <Section>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="label-voice text-[14px] font-bold text-mustard-deep">From the Academy</p>
+            <p className="label-voice text-[14px] font-bold text-mustard-ink">From the Academy</p>
             <h2 className="mt-3 text-section">Latest news</h2>
           </div>
           <Link
@@ -160,7 +160,7 @@ export default function Home() {
                   />
                 </div>
               )}
-              <p className="label-voice text-[13px] font-bold text-mustard-deep">
+              <p className="label-voice text-[13px] font-bold text-mustard-ink">
                 {a.category} · {formatNewsDate(a.date)}
               </p>
               <h3 className="mt-2.5 font-display text-[clamp(22px,2.2vw,28px)] uppercase leading-[1.08]">

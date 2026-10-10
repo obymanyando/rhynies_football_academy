@@ -34,7 +34,7 @@ export default function Coaches() {
             >
               <span
                 aria-hidden="true"
-                className="grid size-24 place-items-center rounded-full bg-cream-tint font-display text-[28px] text-mustard-deep"
+                className="grid size-24 place-items-center rounded-full bg-cream-tint font-display text-[28px] text-mustard-ink"
               >
                 {c.ageGroup.toUpperCase()}
               </span>

@@ -22,7 +22,7 @@ export default function Competitions() {
       <Section variant="tint" className="pt-0">
         <div className="grid gap-6 lg:grid-cols-2">
           <article className="rounded-md border border-sand bg-white p-8">
-            <p className="label-voice text-[13px] font-bold text-mustard-deep">
+            <p className="label-voice text-[13px] font-bold text-mustard-ink">
               Regional schools football
             </p>
             <h2 className="mt-3 font-display text-[24px] uppercase leading-tight">
@@ -36,7 +36,7 @@ export default function Competitions() {
           </article>
 
           <article className="rounded-md border border-sand bg-white p-8">
-            <p className="label-voice text-[13px] font-bold text-mustard-deep">
+            <p className="label-voice text-[13px] font-bold text-mustard-ink">
               National youth league
             </p>
             <h2 className="mt-3 font-display text-[24px] uppercase leading-tight">

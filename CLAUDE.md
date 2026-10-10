@@ -47,8 +47,11 @@ say. Five core values, in order: Respect, Discipline, Determination, Teamwork,
 Success. A six-value list appears in old material and is superseded.
 
 **Never hardcode a brand hex.** Tokens live in `src/index.css`, exposed through
-`tailwind.config.ts`. Mustard on cream fails WCAG AA — `mustard-deep` is the
-accessible choice for small text on cream.
+`tailwind.config.ts`. Mustard on cream fails WCAG AA, and so does
+`mustard-deep` (2.6:1, it is a pressed-state fill). Small mustard text on any
+ground uses `mustard-ink`: cream, white and cream-tint only (it misses AA on
+`sand` and `sand-warm`). Plain mustard text fails even at display size. Pinned by
+`src/test/contrast.test.ts`.
 
 **Sticky offsets use `--header-total-h`, not `--header-h`.** The header is its
 84px nav row plus a 2px mustard rule. This exact bug has now bitten three times;

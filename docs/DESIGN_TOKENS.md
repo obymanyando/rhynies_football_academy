@@ -13,15 +13,25 @@ Defined once in `src/index.css` as HSL triples, exposed through
 | `link-hover` | `#3D372D` | Link hover on light grounds |
 | `mustard` | `#EFA91B` | Primary accent, buttons, focus ring |
 | `mustard-bright` | `#FFC93B` | Hover fill, active nav underline, accent on dark |
-| `mustard-deep` | `#D08F1C` | Pressed state, kickers on cream |
+| `mustard-deep` | `#D08F1C` | Pressed state of mustard buttons. **Never text** |
+| `mustard-ink` | `#7F620B` | Small mustard text (kickers, labels) on cream, white and cream-tint |
 | `cream` | `#FBF8F0` | Page ground |
 | `cream-tint` | `#F7EBCB` | Value pills, soft cards |
 | `sand` | `#E6DCC2` | Body text on dark grounds, hairline borders |
 | `sand-warm` | `#F3DFC4` | Nav links at rest on dark |
 
-> **Contrast guardrail.** Mustard on cream does **not** clear WCAG AA. Use it for
-> fills, rules and large display type only — never for body-size text on cream.
-> `mustard-deep` is the accessible choice for small text on cream.
+> **Contrast guardrail.** Mustard on a light ground does **not** clear WCAG AA at
+> any size: 2.0:1 on white, short of even the 3:1 large-text bar. Use it for fills
+> and rules only. The Teams age-group labels were 40px mustard on white until
+> 2026-10 and failed.
+> `mustard-deep` fails too (2.6:1 on cream); it was used for kickers until
+> 2026-10 and every one of them failed. Use `mustard-ink`: 5.4:1 on cream,
+> 5.8:1 on white, 4.8:1 on cream-tint. It is a shade darker than the design's
+> `#8A6A0C`, which falls just short (4.3:1) on cream-tint, where the fixture
+> results and the Support page's "Where support goes" label sit. It is **not**
+> for `sand` or `sand-warm` grounds (4.2 and 4.4:1). `src/test/contrast.test.ts` reads the tokens from `index.css` and
+> fails if `mustard-ink` drops below AA or any component sets text in plain
+> `mustard` or `mustard-deep`.
 
 ## Typography
 

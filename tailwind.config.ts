@@ -17,6 +17,7 @@ export default {
         mustard: "hsl(var(--mustard))",
         "mustard-bright": "hsl(var(--mustard-bright))",
         "mustard-deep": "hsl(var(--mustard-deep))",
+        "mustard-ink": "hsl(var(--mustard-ink))",
         cream: "hsl(var(--cream))",
         "cream-tint": "hsl(var(--cream-tint))",
         sand: "hsl(var(--sand))",

@@ -26,7 +26,7 @@ export default function Teams() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ageGroups.map((g) => (
             <article key={g.id} className="rounded-md border border-sand bg-white p-7">
-              <p className="font-display text-[40px] leading-none text-mustard">{g.label}</p>
+              <p className="font-display text-[40px] leading-none text-mustard-ink">{g.label}</p>
               <h2 className="mt-3 font-display text-[21px] uppercase">{g.full}</h2>
               <p className="mt-3 text-[16px] leading-relaxed text-ink-body/80">{g.description}</p>
               <p className="label-voice mt-5 border-t border-sand pt-4 text-[13px] font-semibold text-ink-body/70">
@@ -36,14 +36,14 @@ export default function Teams() {
           ))}
 
           <article className="rounded-md border-2 border-mustard bg-cream p-7">
-            <p className="label-voice text-[13px] font-bold text-mustard-deep">Total</p>
+            <p className="label-voice text-[13px] font-bold text-mustard-ink">Total</p>
             <h2 className="mt-3 font-display text-[21px] uppercase">Full academy capacity</h2>
             <p className="mt-3 text-[16px] leading-relaxed text-ink-body/80">
               Across all five age groups.
             </p>
             <p className="label-voice mt-5 border-t border-sand pt-4 text-[13px] font-semibold text-ink-body/70">
               Player places{" "}
-              <span className="ml-2 font-display text-[28px] text-mustard-deep">{totalCapacity}</span>
+              <span className="ml-2 font-display text-[28px] text-mustard-ink">{totalCapacity}</span>
             </p>
           </article>
         </div>

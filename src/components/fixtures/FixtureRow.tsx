@@ -10,7 +10,7 @@ export function FixtureRow({ fixture }: { fixture: Fixture }) {
 
   return (
     <li className="flex flex-wrap items-baseline gap-x-5 gap-y-2 border-b border-sand py-5 last:border-b-0">
-      <span className="label-voice w-full text-[13px] font-bold text-mustard-deep">
+      <span className="label-voice w-full text-[13px] font-bold text-mustard-ink">
         {fixture.competition} · {fixture.ageGroup.toUpperCase()}
         {fixture.placeholder && (
           <span className="ml-2 font-semibold text-ink-body/50">Placeholder</span>
