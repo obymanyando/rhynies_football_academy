@@ -1,21 +1,24 @@
 import { Link } from "react-router-dom";
 
 import { CTAButton } from "@/components/common/CTAButton";
-import { PlaceholderNote } from "@/components/common/PlaceholderNote";
 import { SEO } from "@/components/common/SEO";
 import { Section } from "@/components/common/Section";
+import { InstagramPostLink, SheetStatus } from "@/components/common/SheetStatus";
 import { ValuePills } from "@/components/common/ValuePills";
 import { club, stats } from "@/content/club";
 import matchWide from "@/assets/images/match-wide.jpeg";
 import teamHopsol2 from "@/assets/images/team-hopsol-2.jpeg";
 import trainingPitch from "@/assets/images/training-pitch.jpeg";
-import { news } from "@/content/news";
+import { useSheet } from "@/lib/useSheet";
 import { formatNewsDate } from "@/lib/utils";
 
 /** A presentation flag in the design; a build-time choice here. */
 const SHOW_STAT_BAND = true;
 
 export default function Home() {
+  const sheet = useSheet("news");
+  const news = sheet.status === "ready" ? sheet.items : [];
+
   return (
     <>
       <SEO
@@ -144,7 +147,13 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        {sheet.status !== "ready" ? (
+          <SheetStatus status={sheet.status} what="news" />
+        ) : (
+          !news.length && <SheetStatus status="empty" what="news" />
+        )}
+
+        <div className="mt-10 grid gap-6 empty:hidden md:grid-cols-3">
           {news.slice(0, 3).map((a) => (
             <article key={a.id}>
               {a.image && (
@@ -167,14 +176,10 @@ export default function Home() {
                 {a.title}
               </h3>
               <p className="mt-2.5 text-[16px] leading-relaxed text-ink-body/80">{a.excerpt}</p>
+              {a.link && <InstagramPostLink href={a.link} />}
             </article>
           ))}
         </div>
-
-        <PlaceholderNote>
-          These are placeholder articles while the Academy's real updates are collected. Send
-          them through and they replace these directly.
-        </PlaceholderNote>
       </Section>
 
       <section className="bg-mustard">
