@@ -6,7 +6,8 @@ Components read the interfaces in `types.ts` either way.
 
 ## The club's sheet: fixtures, results, news
 
-The club owns the sheet; developers do not edit it. The site fetches each tab
+The club edits the sheet; developers do not. (Ownership is still moving to the
+club's account; see **Owner** below.) The site fetches each tab
 as CSV from the reader's browser (`src/lib/useSheet.ts`) on every page load, so
 a change shows on the next refresh with no build or deploy. Google's CSV export
 allows cross-origin reads and sends `no-cache`, which is what makes this work.
