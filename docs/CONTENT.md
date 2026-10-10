@@ -12,7 +12,11 @@ a change shows on the next refresh with no build or deploy. Google's CSV export
 allows cross-origin reads and sends `no-cache`, which is what makes this work.
 
 - **Where it is:** sheet id and tab `gid`s in `src/content/sheet.ts`. Sharing is
-  "anyone with the link can view".
+  "anyone with the link can view". `src/test/sheetConfig.test.ts` fails if the id
+  is blank or both tabs point at the same `gid`.
+- **Owner:** created in Oby's Google account for testing (2026-10-10). To hand
+  it to the club: **Share → Transfer ownership** to rhyniesstars.fa@gmail.com.
+  The id stays the same, so no code changes.
 - ⚠️ **The whole spreadsheet is public.** Its id is in this public repo and in
   the site's JavaScript, so anyone can read every tab. Nothing about the
   children (names lists, phone numbers, medical notes) may ever go in it. The
