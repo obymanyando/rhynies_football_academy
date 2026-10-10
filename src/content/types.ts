@@ -1,11 +1,10 @@
 /**
  * The content model.
  *
- * Fixtures, results, news, coaches and gallery change during a season and the
- * Academy will eventually need to edit them without a developer. They live in
- * typed files rather than a CMS for now — but components read these interfaces,
- * never the files directly, so the source can move behind an API later without
- * touching a single component.
+ * Fixtures, results and news come from the club's Google Sheet, parsed into
+ * these types by `src/lib/sheet.ts`. Coaches and the gallery still live in
+ * typed files. Components read these interfaces either way, so a source can
+ * change without touching a component.
  */
 
 export type AgeGroupId = "u7" | "u9" | "u11" | "u12" | "u13" | "u15";
@@ -49,6 +48,8 @@ export interface NewsArticle {
   excerpt: string;
   body?: string;
   image?: string;
+  /** The club's own Instagram post for this story. Only instagram.com links are kept. */
+  link?: string;
   placeholder?: boolean;
 }
 
