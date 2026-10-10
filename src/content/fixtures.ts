@@ -1,59 +1,29 @@
 import type { Fixture } from "./types";
 
 /**
- * PLACEHOLDER DATA.
- *
- * Every row below carries `placeholder: true` and the UI labels them as such.
- * They exist so the layout can be seen and reviewed, not so anyone can read a
- * date off this page. Replace with the real season calendar when the Academy
- * supplies it, and drop the `placeholder` flag as each real row lands.
+ * Fixtures and results live in the club's Google Sheet (see `sheet.ts`), read
+ * at runtime by `useSheet("fixtures")`. A row with no score is a fixture;
+ * filling in both scores turns it into a result.
  */
-export const fixtures: Fixture[] = [
-  {
-    id: "f1",
-    ageGroup: "u13",
-    competition: "MTC HopSol",
-    opponent: "Quest Eleven FA",
-    date: "2026-09-12",
-    time: "09:00",
-    venue: "Windhoek",
-    home: true,
-    placeholder: true,
-  },
-  {
-    id: "f2",
-    ageGroup: "u11",
-    competition: "KSSR League",
-    opponent: "Khomasdal Primary",
-    date: "2026-09-19",
-    time: "10:30",
-    venue: "Windhoek West",
-    home: true,
-    placeholder: true,
-  },
-  {
-    id: "r1",
-    ageGroup: "u12",
-    competition: "MTC HopSol",
-    opponent: "Quest 11",
-    date: "2026-09-05",
-    venue: "Windhoek",
-    home: true,
-    result: {
-      scored: 4,
-      conceded: 0,
-      note: "Goals: John, Sumar, Destin, Jayden. Great team. Great spirit. Great win.",
-    },
-    placeholder: true,
-  },
-];
 
-export const upcomingFixtures = (): Fixture[] =>
+/**
+ * Today in Windhoek as YYYY-MM-DD, whatever the reader's own timezone: the
+ * sheet's dates are Windhoek dates, so a parent abroad still sees today's match.
+ */
+export function todayISO(now = new Date()): string {
+  // en-CA formats as YYYY-MM-DD.
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Windhoek" }).format(now);
+}
+
+/**
+ * Unplayed and not yet past. A past match whose score was never entered drops
+ * off here rather than being advertised as upcoming; it appears again under
+ * results once the score goes in.
+ */
+export const upcomingFixtures = (fixtures: Fixture[], today = todayISO()): Fixture[] =>
   fixtures
-    .filter((f) => !f.result)
+    .filter((f) => !f.result && f.date >= today)
     .sort((a, b) => a.date.localeCompare(b.date));
 
-export const recentResults = (): Fixture[] =>
-  fixtures
-    .filter((f) => f.result)
-    .sort((a, b) => b.date.localeCompare(a.date));
+export const recentResults = (fixtures: Fixture[]): Fixture[] =>
+  fixtures.filter((f) => f.result).sort((a, b) => b.date.localeCompare(a.date));

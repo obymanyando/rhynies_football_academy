@@ -5,6 +5,9 @@ import { formatFixtureDate } from "@/lib/utils";
  * Wrapping flex, not fixed columns — rows reflow on narrow screens rather than
  * clipping. The handoff is explicit about this.
  */
+const outcome = (r: NonNullable<Fixture["result"]>) =>
+  r.scored > r.conceded ? "beat" : r.scored === r.conceded ? "drew with" : "lost to";
+
 export function FixtureRow({ fixture }: { fixture: Fixture }) {
   const { result } = fixture;
 
@@ -25,7 +28,7 @@ export function FixtureRow({ fixture }: { fixture: Fixture }) {
 
       <span className="font-display text-[20px] uppercase leading-tight">
         Rhynies Stars{" "}
-        <span className="text-ink-body/60">{result ? "beat" : "v"}</span> {fixture.opponent}
+        <span className="text-ink-body/60">{result ? outcome(result) : "v"}</span> {fixture.opponent}
       </span>
 
       <span className="label-voice ml-auto text-[14px] font-semibold text-ink-body/70">
