@@ -36,7 +36,7 @@ export default function News() {
                 />
               )}
               <div className="p-8">
-                <p className="label-voice text-[13px] font-bold text-mustard-deep">
+                <p className="label-voice text-[13px] font-bold text-mustard-ink">
                   {a.category} · {formatNewsDate(a.date)}
                 </p>
                 <h2 className="mt-3 font-display text-[24px] uppercase leading-tight">{a.title}</h2>

@@ -22,7 +22,7 @@ export default function Support() {
       </Section>
 
       <Section variant="tint" className="pt-0">
-        <p className="label-voice text-[14px] font-bold text-mustard-deep">Where support goes</p>
+        <p className="label-voice text-[14px] font-bold text-mustard-ink">Where support goes</p>
         <h2 className="mt-3 text-section">Four things that keep the academy running</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {supportAreas.map((a) => (
@@ -39,7 +39,7 @@ export default function Support() {
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {supportTiers.map((t) => (
             <article key={t.tier} className="rounded-md border border-sand bg-white p-8">
-              <p className="label-voice text-[13px] font-bold text-mustard-deep">{t.tier}</p>
+              <p className="label-voice text-[13px] font-bold text-mustard-ink">{t.tier}</p>
               <h3 className="mt-3 font-display text-[24px] uppercase leading-tight">{t.title}</h3>
               <p className="mt-4 text-[16px] leading-relaxed text-ink-body/80">{t.description}</p>
               <p className="mt-5 border-t border-sand pt-4 text-[15px] italic text-ink-body/70">
