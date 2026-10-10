@@ -6,7 +6,9 @@ import { SEO } from "@/components/common/SEO";
 import { Section } from "@/components/common/Section";
 import { ValuePills } from "@/components/common/ValuePills";
 import { club, stats } from "@/content/club";
-import { trainingPitch } from "@/content/gallery";
+import matchWide from "@/assets/images/match-wide.jpeg";
+import teamHopsol2 from "@/assets/images/team-hopsol-2.jpeg";
+import trainingPitch from "@/assets/images/training-pitch.jpeg";
 import { news } from "@/content/news";
 import { formatNewsDate } from "@/lib/utils";
 
@@ -102,25 +104,28 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section variant="tint">
+      <Section className="pt-0">
         <div className="grid gap-6 md:grid-cols-3">
           <HomeCard
             kicker="Programmes"
             title="Football development"
             body="Technical work, ball mastery, tactical understanding, physical literacy and goalkeeping."
             to="/programmes"
+            image={trainingPitch}
           />
           <HomeCard
             kicker="Teams"
             title="The U7–U15 pathway"
             body="Five age groups, eighteen places each, one clear route through the Academy."
             to="/teams"
+            image={teamHopsol2}
           />
           <HomeCard
             kicker="Competitions"
             title="Real league football"
             body="KSSR regional schools football and the MTC HopSol Youth Soccer League."
             to="/competitions"
+            image={matchWide}
           />
         </div>
       </Section>
@@ -141,12 +146,27 @@ export default function Home() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {news.slice(0, 3).map((a) => (
-            <article key={a.id} className="rounded-md border border-sand bg-white p-6">
+            <article key={a.id}>
+              {a.image && (
+                <div className="mb-5 aspect-[4/3] overflow-hidden rounded-card bg-cream-tint">
+                  <img
+                    src={a.image}
+                    alt=""
+                    width={1008}
+                    height={490}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover"
+                  />
+                </div>
+              )}
               <p className="label-voice text-[13px] font-bold text-mustard-deep">
                 {a.category} · {formatNewsDate(a.date)}
               </p>
-              <h3 className="mt-3 font-display text-[21px] uppercase leading-tight">{a.title}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-body/80">{a.excerpt}</p>
+              <h3 className="mt-2.5 font-display text-[clamp(22px,2.2vw,28px)] uppercase leading-[1.08]">
+                {a.title}
+              </h3>
+              <p className="mt-2.5 text-[16px] leading-relaxed text-ink-body/80">{a.excerpt}</p>
             </article>
           ))}
         </div>
@@ -182,20 +202,41 @@ function HomeCard({
   title,
   body,
   to,
+  image,
 }: {
   kicker: string;
   title: string;
   body: string;
   to: string;
+  image: string;
 }) {
   return (
     <Link
       to={to}
-      className="group rounded-md border border-sand bg-cream p-7 transition-transform hover:-translate-y-1"
+      className="group relative isolate flex min-h-[380px] flex-col justify-end overflow-hidden rounded-card bg-ink-header p-7 shadow-card transition duration-200 hover:-translate-y-1 hover:shadow-card-hover"
     >
-      <p className="label-voice text-[13px] font-bold text-mustard-deep">{kicker}</p>
-      <h3 className="mt-3 font-display text-[23px] uppercase leading-tight">{title}</h3>
-      <p className="mt-3 text-[16px] leading-relaxed text-ink-body/80">{body}</p>
+      {/* Decorative: the card's text says where it goes. */}
+      <img
+        src={image}
+        alt=""
+        width={1008}
+        height={490}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-10 size-full object-cover"
+      />
+      {/* Darker than the design's 35% midpoint: on the bright pitch photo the kicker,
+          which sits about halfway up, measured 2.6:1 there. At 70% every line of
+          text clears WCAG AA (kicker worst case 6.3:1) on all three photos. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/95 from-[8%] via-ink/70 via-[55%] to-ink/10"
+      />
+      <p className="label-voice text-[13px] font-bold text-mustard-bright">{kicker}</p>
+      <h3 className="mt-2.5 font-display text-[clamp(26px,2.4vw,30px)] uppercase leading-[1.04] text-white">
+        {title}
+      </h3>
+      <p className="mt-2.5 text-[15px] leading-relaxed text-sand">{body}</p>
     </Link>
   );
 }

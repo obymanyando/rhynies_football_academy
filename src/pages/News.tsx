@@ -23,14 +23,27 @@ export default function News() {
       <Section variant="tint" className="pt-0">
         <div className="grid gap-6 md:grid-cols-2">
           {news.map((a) => (
-            <article key={a.id} className="rounded-md border border-sand bg-white p-8">
-              <p className="label-voice text-[13px] font-bold text-mustard-deep">
-                {a.category} · {formatNewsDate(a.date)}
-              </p>
-              <h2 className="mt-3 font-display text-[24px] uppercase leading-tight">{a.title}</h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-ink-body/80">
-                {a.body ?? a.excerpt}
-              </p>
+            <article key={a.id} className="overflow-hidden rounded-md border border-sand bg-white">
+              {a.image && (
+                <img
+                  src={a.image}
+                  alt=""
+                  width={1008}
+                  height={490}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              )}
+              <div className="p-8">
+                <p className="label-voice text-[13px] font-bold text-mustard-deep">
+                  {a.category} · {formatNewsDate(a.date)}
+                </p>
+                <h2 className="mt-3 font-display text-[24px] uppercase leading-tight">{a.title}</h2>
+                <p className="mt-4 text-[16px] leading-relaxed text-ink-body/80">
+                  {a.body ?? a.excerpt}
+                </p>
+              </div>
             </article>
           ))}
         </div>

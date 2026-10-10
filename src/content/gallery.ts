@@ -39,5 +39,3 @@ export const gallery: GalleryImage[] = [
   { src: matchSpread, alt: "Players spread across the pitch during a game in Windhoek", width: 1008, height: 490 },
   { src: teamHopsol6, alt: "Rhynies Stars players posing behind their kneeling goalkeeper", width: 1008, height: 490 },
 ];
-
-export { trainingPitch, trainingDuel, matchWide };
