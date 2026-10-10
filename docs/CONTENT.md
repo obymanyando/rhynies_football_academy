@@ -9,7 +9,7 @@ replace the source later without touching a component.
 | `club.ts` | Name, tagline, contacts, vision, mission, core values, stat band | **Final** |
 | `academy.ts` | Age groups, capacities, programmes, competitions, support tiers | **Final** |
 | `fixtures.ts` | Fixtures and results | **Placeholder** |
-| `news.ts` | News articles | **Placeholder** |
+| `news.ts` | News articles, each with an optional `image` | **Placeholder** |
 | `coaches.ts` | Coach names, roles, bios | **Placeholder** |
 | `gallery.ts` | Photographs and alt text | Real, twelve images |
 
