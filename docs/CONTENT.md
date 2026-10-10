@@ -29,8 +29,7 @@ allows cross-origin reads and sends `no-cache`, which is what makes this work.
   dropdowns for every fixed-choice column, the date included, and a "How to" tab
   written for the club. To rebuild the sheet, upload it to the
   club's Google Drive, open it with Google Sheets and **File → Save as Google
-  Sheets**. Then set **File → Settings → Locale** to Namibia or United Kingdom,
-  so a date typed by hand is read day-first.
+  Sheets**.
 - **Columns are matched by heading, not position.** Required: Fixtures needs
   a date, Age group, Competition, Opponent and Home/Away; News needs a date,
   Category, Headline and Summary. If a required heading is missing, the page
@@ -44,6 +43,9 @@ allows cross-origin reads and sends `no-cache`, which is what makes this work.
   can't be swapped. A single `Date` column also works if a sheet has one, but
   only as ISO (`2026-09-12`). A slashed date is skipped, not guessed, because
   its month depends on the sheet's locale. Impossible dates (31 Feb) are skipped.
+  A sheet with both a `Date` column and Day/Month/Year is refused outright, so
+  an extra "Date" column can't silently hide every row. The Year list runs
+  2026–2030; extend the dropdown in the sheet when needed.
 - **Fixtures:** a row without scores is upcoming. A past one without scores is
   hidden until its score goes in. "Today" is Windhoek's date. Note only shows
   with a result (e.g. the scorers). Missing Venue shows as "TBC".
