@@ -59,19 +59,52 @@ export function parseCsv(text: string): string[][] {
  * or add columns without breaking the site. A missing required column throws:
  * that is a broken sheet, and the page shows its error state.
  */
-function table(csv: string, required: string[]) {
+function table(csv: string, wanted: string[]) {
   const [header = [], ...body] = parseCsv(csv);
   const names = header.map((h) => h.trim().toLowerCase());
   const index = new Map(names.map((h, i) => [h, i]));
+  // The Sheets phone app has no date picker, so the template gives the club
+  // three dropdowns (Day, Month, Year) instead of one Date cell. Either works.
+  const splitDate = !index.has("date") && DATE_PARTS.every((p) => index.has(p.toLowerCase()));
+  const required = splitDate ? wanted.flatMap((r) => (r === "Date" ? DATE_PARTS : [r])) : wanted;
   const missing = required.filter((r) => !index.has(r.toLowerCase()));
   if (missing.length) throw new Error(`Sheet is missing column(s): ${missing.join(", ")}`);
   // A second "Date" column would silently replace the first. Refuse instead.
   const doubled = required.filter((r) => names.filter((n) => n === r.toLowerCase()).length > 1);
   if (doubled.length) throw new Error(`Sheet has duplicate column(s): ${doubled.join(", ")}`);
-  return body.map((cells) => (name: string) => {
-    const i = index.get(name.toLowerCase());
-    return i === undefined ? "" : (cells[i] ?? "").trim();
+  return body.map((cells) => {
+    const cell = (name: string) => {
+      const i = index.get(name.toLowerCase());
+      return i === undefined ? "" : (cells[i] ?? "").trim();
+    };
+    return (name: string) =>
+      splitDate && name === "Date" ? isoFromParts(cell("Day"), cell("Month"), cell("Year")) : cell(name);
   });
+}
+
+const DATE_PARTS = ["Day", "Month", "Year"];
+const MONTHS = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
+
+/** "Oct", "october" or "10" to 10; anything else to 0. A fixed list, not the browser's locale. */
+function monthNumber(raw: string): number {
+  const m = raw.toLowerCase();
+  if (/^\d{1,2}$/.test(m)) return Number(m);
+  return MONTHS.findIndex((name) => m === name || m === name.slice(0, 3)) + 1;
+}
+
+/**
+ * Day, Month and Year dropdowns to "YYYY-MM-DD", which parseDate then checks
+ * is a real date (31 Feb is skipped). Each part is in its own column, so
+ * there is no day/month ambiguity. Anything unreadable becomes "" and the row
+ * is skipped.
+ */
+function isoFromParts(day: string, month: string, year: string): string {
+  const m = monthNumber(month);
+  if (!/^\d{1,2}$/.test(day) || m < 1 || m > 12 || !/^\d{4}$/.test(year)) return "";
+  return `${year}-${String(m).padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 /**

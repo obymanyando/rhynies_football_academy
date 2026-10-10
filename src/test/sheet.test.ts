@@ -195,3 +195,40 @@ describe("upcomingFixtures / recentResults", () => {
     expect(recentResults(items).map((f) => f.opponent)).toEqual(["Recent FC", "Quest Eleven FA"]);
   });
 });
+
+describe("Day / Month / Year dropdown columns", () => {
+  // The Sheets phone app has no calendar for date cells, so the template uses
+  // three dropdowns instead of one Date column.
+  const DMY_FIXTURES = "Day,Month,Year,Age group,Competition,Opponent,Home/Away";
+  const DMY_NEWS = "Day,Month,Year,Category,Headline,Summary";
+
+  it("builds the date from three dropdowns", () => {
+    const { items, skipped } = parseFixtures(`${DMY_FIXTURES}\n17,Oct,2026,U13,MTC HopSol,X,Home`);
+    expect(skipped).toBe(0);
+    expect(items[0].date).toBe("2026-10-17");
+  });
+
+  it("accepts full month names and month numbers, in any case", () => {
+    const { items } = parseNews(
+      `${DMY_NEWS}\n5,september,2026,Academy,A,S\n6,9,2026,Academy,B,S`,
+    );
+    expect(items.map((a) => a.date)).toEqual(["2026-09-06", "2026-09-05"]);
+  });
+
+  it.each([
+    ["an impossible day", "31,Feb,2026,U13,MTC HopSol,X,Home"],
+    ["a missing year", "17,Oct,,U13,MTC HopSol,X,Home"],
+    ["an unknown month", "17,Oktober,2026,U13,MTC HopSol,X,Home"],
+    ["a two-digit year", "17,Oct,26,U13,MTC HopSol,X,Home"],
+  ])("skips and counts a row with %s", (_why, row) => {
+    const { items, skipped } = parseFixtures(`${DMY_FIXTURES}\n${row}`);
+    expect(items).toEqual([]);
+    expect(skipped).toBe(1);
+  });
+
+  it("still needs a date: no Date column and only part of Day/Month/Year throws", () => {
+    expect(() => parseFixtures("Day,Month,Age group,Competition,Opponent,Home/Away\n17,Oct,U13,MTC HopSol,X,Home")).toThrow(
+      /Date/,
+    );
+  });
+});
