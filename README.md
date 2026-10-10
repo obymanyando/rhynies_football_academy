@@ -42,7 +42,8 @@ Determination, Teamwork, Success. An older six-value list is superseded.
 ## Status
 
 The eleven pages are built. Club identity, programmes, age groups, competitions
-and contact details are final. Fixtures, results, coach names and news are
-visibly-labelled placeholders awaiting real data from the Academy — see
+and contact details are final. Fixtures, results and news come live from a
+Google Sheet the club edits itself. Coach names are visibly-labelled
+placeholders awaiting real data from the Academy. See
 [docs/CONTENT.md](docs/CONTENT.md). There is deliberately no contact form; see
 [design/README.md](design/README.md).

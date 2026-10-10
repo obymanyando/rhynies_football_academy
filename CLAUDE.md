@@ -83,15 +83,21 @@ Routes in `src/App.tsx`, all wrapped by `<Layout>`:
 | `/programmes` | Programmes | Final |
 | `/teams` | Teams & age groups | Final |
 | `/competitions` | Competitions | Final |
-| `/fixtures` | Fixtures & results | Placeholder |
-| `/news` | News | Placeholder |
+| `/fixtures` | Fixtures & results | Live from the club's sheet |
+| `/news` | News | Live from the club's sheet |
 | `/gallery` | Gallery | Real photos |
 | `/coaches` | Coaches & staff | Placeholder |
 | `/support` | Support Us | Final |
 | `/contact` | Contact | Final |
 
-Content lives in `src/content/` as typed files. Components read the interfaces
-in `types.ts`, never the files directly, so a CMS can slot in behind them.
+Fixtures, results and news come from the **club's Google Sheet**, fetched in the
+browser at page load (`src/lib/useSheet.ts`, parsed by `src/lib/sheet.ts`). The
+club edits it; developers don't. Everything else lives in `src/content/` as typed
+files. Components read the interfaces in `types.ts` either way. See
+`docs/CONTENT.md` for the sheet's rules.
+
+**A sheet row that can't be shown correctly is skipped, never guessed.** Keep it
+that way: a wrong kick-off date read by a parent is worse than a missing row.
 
 ## Key Files
 
