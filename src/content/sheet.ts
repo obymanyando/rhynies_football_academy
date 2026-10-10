@@ -1,18 +1,19 @@
 /**
  * The club's Google Sheet: the single source for fixtures, results and news.
  *
- * Owned by the club's Google account and shared as "anyone with the link can
- * view". The site reads each tab as CSV straight from the browser: Google's
+ * Shared as "anyone with the link can view". Created in Oby's Google account
+ * for testing (2026-10-10); ownership is to be transferred to the club's
+ * account, which keeps this id, so nothing here changes when it moves. The site reads each tab as CSV straight from the browser: Google's
  * export endpoint allows cross-origin reads and sends `no-cache`, so an edit
  * shows on the next page load with no build or deploy.
  *
  * `gid` is the number after `#gid=` in the tab's URL.
  */
 export const CLUB_SHEET = {
-  id: "",
+  id: "1jREZU3SHd7g78m1AKjjkwSMOQIiPS-4HJRmIbly9lgw",
   tabs: {
-    fixtures: 0,
-    news: 0,
+    fixtures: 211927176,
+    news: 280680790,
   },
 } as const;
 
