@@ -34,6 +34,24 @@ All three load in one Google Fonts request with `display=swap` and preconnect.
 Keeping all three matters: the condensed/uppercase label voice against Anton
 display and Barlow body is the site's typographic signature.
 
+## Cards
+
+Two shapes, kept apart on purpose:
+
+- **Bordered cards and image frames** (Programmes, Teams, Competitions, Support,
+  Contact, Coaches, the gallery and the News page) use `rounded-md`.
+- **Photo cards** (the Home page's three section cards and its news preview)
+  use `rounded-card` (20px) and `shadow-card`, lifting to `shadow-card-hover`.
+
+The two design sources disagree here: the handoff README asks for 4–8px,
+"square-ish" cards, while the design file draws these photo cards at 20–22px.
+The owner pointed at the design file, so it wins for photo cards only.
+
+Text laid over a photo sits on a bottom-up `ink` gradient: 95% at the foot, 70%
+at the midpoint, 10% at the top. The design's midpoint was 35%, which left the
+small mustard kicker at 2.6:1 on the bright pitch photo. At 70% every line on
+all three cards measures WCAG AA or better. Do not lighten it.
+
 ## Header geometry — read before touching sticky positioning
 
 Three related tokens, and the distinction is load-bearing:

@@ -9,9 +9,9 @@ replace the source later without touching a component.
 | `club.ts` | Name, tagline, contacts, vision, mission, core values, stat band | **Final** |
 | `academy.ts` | Age groups, capacities, programmes, competitions, support tiers | **Final** |
 | `fixtures.ts` | Fixtures and results | **Placeholder** |
-| `news.ts` | News articles | **Placeholder** |
+| `news.ts` | News articles, each with an optional `image` | **Placeholder** |
 | `coaches.ts` | Coach names, roles, bios | **Placeholder** |
-| `gallery.ts` | Photographs and alt text | Real, six images |
+| `gallery.ts` | Photographs and alt text | Real, twelve images |
 
 ## Placeholders
 
@@ -28,10 +28,18 @@ Drop the flag per row as real data lands; the labels disappear on their own.
 - Real fixtures and results for the season calendar
 - Five coach names, portraits and short bios
 - Real news items and match reports
-- Further photography (the current six are phone photographs; do not upscale)
+- Further photography (the current twelve are phone photographs; do not upscale)
 
 ## Adding an image
 
 Put the file in `src/assets/images/`, import it in `gallery.ts`, and record its
 intrinsic `width`/`height`. The dimensions are not optional — they reserve space
 so the page does not shift as images load, which matters on slow connections.
+
+Check a photo for location data before adding it — these are photographs of
+children. WhatsApp exports usually carry none, but a phone's original does.
+
+**Order matters.** The gallery flows in columns, and a portrait is as tall as
+four landscapes. Keep portraits where the comment in `gallery.ts` puts them, or
+one column ends far short of the others. Check `/gallery` at 1024px and 1280px
+after any change.

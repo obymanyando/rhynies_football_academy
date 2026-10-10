@@ -49,9 +49,15 @@ export default {
         // The one hard breakpoint in the design. Everything else is fluid.
         nav: "1180px",
       },
+      borderRadius: {
+        // Photo cards. The design's 20-22px; text cards stay on rounded-md.
+        card: "20px",
+      },
       boxShadow: {
         crest: "0 4px 14px rgba(0,0,0,0.25)",
         header: "0 10px 30px rgba(16,14,11,0.18)",
+        card: "0 14px 34px rgba(16,14,11,0.14)",
+        "card-hover": "0 20px 46px rgba(16,14,11,0.28)",
       },
       keyframes: {
         rsRise: {
