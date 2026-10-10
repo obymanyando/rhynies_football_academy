@@ -26,21 +26,24 @@ allows cross-origin reads and sends `no-cache`, which is what makes this work.
   and re-creating one gives it a new `gid`, and its page shows "couldn't load"
   until `sheet.ts` is updated.
 - **Template:** `docs/club-sheet/rhynies-club-sheet-template.xlsx`. It has
-  dropdowns for every fixed-choice column, dates formatted `yyyy-mm-dd`, and a
-  "How to" tab written for the club. To rebuild the sheet, upload it to the
+  dropdowns for every fixed-choice column, the date included, and a "How to" tab
+  written for the club. To rebuild the sheet, upload it to the
   club's Google Drive, open it with Google Sheets and **File → Save as Google
   Sheets**. Then set **File → Settings → Locale** to Namibia or United Kingdom,
   so a date typed by hand is read day-first.
 - **Columns are matched by heading, not position.** Required: Fixtures needs
-  Date, Age group, Competition, Opponent and Home/Away; News needs Date,
+  a date, Age group, Competition, Opponent and Home/Away; News needs a date,
   Category, Headline and Summary. If a required heading is missing, the page
   shows its "couldn't load" message.
 - **Bad rows are skipped, never guessed** (`src/lib/sheet.ts`). That covers an
   unknown dropdown value, an impossible date, or only one score filled in.
   Skips are logged to the browser console as `[sheet] … skipped N row(s)`.
-- **Dates are ISO only** (`2026-09-12`), the template's column format. Any
-  other form is skipped, not guessed: if a cell loses its format, Google
-  exports it in the sheet's locale, and `10/11/2026` could be either month.
+- **Dates are three dropdowns: Day, Month, Year.** The Sheets phone app has no
+  calendar for date cells (only the desktop browser does), so a single Date
+  column meant typing by hand. Three short lists are tap-to-pick, and the parts
+  can't be swapped. A single `Date` column also works if a sheet has one, but
+  only as ISO (`2026-09-12`). A slashed date is skipped, not guessed, because
+  its month depends on the sheet's locale. Impossible dates (31 Feb) are skipped.
 - **Fixtures:** a row without scores is upcoming. A past one without scores is
   hidden until its score goes in. "Today" is Windhoek's date. Note only shows
   with a result (e.g. the scorers). Missing Venue shows as "TBC".
