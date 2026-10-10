@@ -12,10 +12,10 @@
  * `gid` is the number after `#gid=` in the tab's URL.
  */
 export const CLUB_SHEET = {
-  id: "1jREZU3SHd7g78m1AKjjkwSMOQIiPS-4HJRmIbly9lgw",
+  id: "1eO-dskqZPdEvcYXaQbsgDRGmxrjccpsbOh7C2lZKNXQ",
   tabs: {
-    fixtures: 211927176,
-    news: 280680790,
+    fixtures: 1551470161,
+    news: 1944111905,
   },
 } as const;
 
